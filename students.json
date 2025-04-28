@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Juan Dela Cruz",
+    "course": "BS Information Technology",
+    "yearLevel": 2,
+    "fees": [
+      { "type": "Tuition", "amount": 15000, "discount": 2000 },
+      { "type": "Miscellaneous", "amount": 5000, "discount": 0 }
+    ],
+    "amountPaid": 10000
+  },
+  {
+    "id": 2,
+    "name": "Heroes Torres",
+    "course": "BS Information Technology",
+    "yearLevel": 1,
+    "fees": [
+      { "type": "Tuition", "amount": 18000, "discount": 3000 },
+      { "type": "Miscellaneous", "amount": 6000, "discount": 1000 }
+    ],
+    "amountPaid": 8000
+  }
+]
