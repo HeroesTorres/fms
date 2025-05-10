@@ -1,1 +1,40 @@
+<?php
+require_once '../includes/db.php';
 
+header('Content-Type: application/json');
+
+if (!isset($_GET['id'])) {
+    echo json_encode(['error' => 'Student ID is required']);
+    exit;
+}
+
+$student_id = intval($_GET['id']);
+
+// Fetch fees
+$sql = "SELECT fee_type, amount, discount_amount FROM student_fees WHERE student_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $student_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$fees = [];
+$totalPaid = 0;
+
+while ($row = $result->fetch_assoc()) {
+    $fees[] = [
+        'type' => $row['fee_type'],
+        'amount' => floatval($row['amount']),
+        'discount' => floatval($row['discount_amount']),
+    ];
+}
+
+$stmt->close();
+
+// Optional: simulate amountPaid (since you have no payment table yet)
+$totalPaid = 10000.00;
+
+echo json_encode([
+    'fees' => $fees,
+    'amountPaid' => $totalPaid
+]);
+?>
